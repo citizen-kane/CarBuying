@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>@model.title</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/slider.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+		<script src='/javascripts/jquery-2.1.4.min.js'></script>
+		<script src='/javascripts/accounting.min.js'></script>
+		<script src='/javascripts/bootstrap-slider.js'></script>
+		<script src='/stylesheets/bootstrap/js/bootstrap.min.js'></script>
+		<style>
+			.slider-selection {
+				//background: #8283FF;
+				background: #3AA1D5;
+			}
+			.slider-handle {
+				border-bottom-color: blue;
+			}
+			.sliderInput {
+				width: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			@html.block("body")
+		</div>
+		@html.block("script")
+	</body>
+</html>

@@ -1,0 +1,2 @@
+D:\MyData\NCSU\My Courses\DDDM\UI Design\src\CarBuying\CarBuying\obj\Debug\CarBuying.njsprojResolveAssemblyReference.cache
+D:\MyData\NCSU\My Courses\DDDM\UI Design\src\CarBuying\CarBuying\bin\Microsoft.NodejsTools.WebRole.dll

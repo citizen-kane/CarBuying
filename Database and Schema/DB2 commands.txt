@@ -1,0 +1,24 @@
+db2start
+db2 connect to cardb
+db2 list tables
+db2 -tvf DDL.sql
+
+db2 import from 'car_info.csv' of del insert into car_info;
+db2 import from 'obj_features.csv' of del insert into obj_features;
+db2 import from 'Safety.csv' of del insert into Safety;
+db2 import from 'Suspension.csv' of del insert into Suspension;
+db2 import from 'Comfort.csv' of del insert into INT_Comfort;
+db2 import from 'Convenience.csv' of del insert into INT_Convenience;
+db2 import from 'Front_Seats.csv' of del insert into INT_Front_Seats;
+db2 import from 'In_Car_Entertainment.csv' of del insert into INT_Entertainment;
+db2 import from 'Instrumentation.csv' of del insert into INT_Instrumentation;
+db2 import from 'Memorized_Settings.csv' of del insert into INT_Memorized_Settings;
+db2 import from 'Power_Features.csv' of del insert into INT_Power_Features;
+db2 import from 'Rear_Seats.csv' of del insert into INT_Rear_Seats;
+db2 import from 'Telematics.csv' of del insert into INT_Telematics;
+db2 import from 'Body.csv' of del insert into EXT_Body;
+db2 import from 'Doors.csv' of del insert into EXT_Doors;
+db2 import from 'Roof_and_Glass.csv' of del insert into EXT_Roof_and_Glass;
+db2 import from 'Tires_and_Wheels.csv' of del insert into EXT_Tires_and_Wheels;
+db2 import from 'Towing_and_Hauling.csv' of del insert into EXT_Towing_and_Hauling;
+db2 import from 'Truck_Features.csv' of del insert into EXT_Truck_Features;

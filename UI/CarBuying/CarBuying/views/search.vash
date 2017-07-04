@@ -1,0 +1,381 @@
+﻿@html.extend('layout',function(model){
+@html.block("body", function(model){
+
+
+<div class="row">
+    <div style="height: 50px"></div>
+</div>
+<div class="row" id="results">	
+    <div class="col-md-3">
+        <div class="well">
+            <div id="pricefilter">
+                <h4>Price</h4>
+                <hr style="border-color: #d9d9d9">
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+					@if(model.prev_filters.suggest != "undefined"){
+						<input id="pricemin_filter" type="text" class="form-control" placeholder="Min" aria-label="Amount (to the nearest dollar)" value="@model.prev_filters.suggest.pricemin">
+					}
+					else{
+						<input id="pricemin_filter" type="text" class="form-control" placeholder="Min" aria-label="Amount (to the nearest dollar)" >
+					}
+                    			  
+                </div>
+                <span style="padding-left: 90px">to</span>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+					@if(model.prev_filters.suggest != "undefined"){
+						<input id="pricemax_filter" type="text" class="form-control" placeholder="Max" aria-label="Amount (to the nearest dollar)" value="@model.prev_filters.suggest.pricemax" >
+					}
+					else{
+						<input id="pricemax_filter" type="text" class="form-control" placeholder="Max" aria-label="Amount (to the nearest dollar)" >			  
+					}
+                </div>
+            </div>
+            <div id="mpgfilter" style="padding-top: 30px">
+                <h4>MPG</h4>
+                <hr style="border-color: #d9d9d9">
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" placeholder="Min CityMPG" aria-label="Amount (to the nearest dollar)">			  
+                </div>
+                <div style="height: 10px"></div>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" placeholder="Min HwayMPG" aria-label="Amount (to the nearest dollar)">			  
+                </div>
+            </div>
+            <div id="makefilter" style="padding-top: 30px">
+                <h4>Make</h4>
+                <hr style="border-color: #d9d9d9">
+                <select style="height: 100px" class="form-control" name="make" id="select_make" multiple="true">
+                    <option value="">Select</option>
+                </select>
+            </div>
+            <div id="bodytypefilter" style="padding-top: 30px">
+                <h4>Body Type</h4>
+                <hr style="border-color: #d9d9d9">
+                <select style="height: 100px" class="form-control" name="make" id="select_type" multiple="true">
+                    <option value="">Select</option>
+                    <option value="convertible">Convertible</option>
+                    <option value="coupe">Coupe</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="hybrid">Hybrid</option>
+                    <option value="electric">Electric</option>
+                    <option value="minivan">Minivan</option>
+                    <option value="van">Van</option>
+                    <option value="suv">Suv</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="speed">Sports</option>
+                    <option value="wagon">Wagon</option>
+                    <option value="hatchback">Hatchback</option>
+                </select>
+            </div>	
+			
+            <div id="yearfilter" style="padding-top: 30px">
+                <h4>Year</h4>
+                <hr style="border-color: #d9d9d9">
+                <select style="height: 100px" class="form-control" name="make" id="select_year" multiple="true">
+                    <option value="">Select</option>
+                </select>
+            </div>	 
+        </div>
+    </div>
+    <div class="col-md-5" id="resultscol">
+        <div>
+            <h4 style="display:inline-block" id="resultcount"></h4>
+            <div style="display:inline-block;width:85px"></div>
+            <button id="btn_filter" class="btn btn-lg btn-success">Search</button>
+        </div>
+        <div style="overflow-y:scroll;height:1000px;overflow-x: hidden;" id="mainresults">
+        @model.cars_list.forEach(function(item){        
+        
+        <div class="row searchitem" data-fuelefficient= "@item.score.fuelefficient" data-trunk= "@item.score.trunk" data-outdoor= "@item.score.outdoor" data-family= "@item.score.family" data-appearance= "@item.score.appearance" data-sound= "@item.score.sound" data-infocenter= "@item.score.infocenter" data-reliable= "@item.score.reliable" data-comfort= "@item.score.comfort" data-power= "@item.score.power" data-value= "@item.score.value" data-usersatisfaction= "@item.score.usersatisfaction">
+                <hr>
+                <div class="col-md-5">
+                @{
+                if(item.image == ""){
+                item.image = 'http://localhost:1337/images/unavailable.jpg';
+                }
+                }
+                <div class="well">
+                    <a href="#"><img style="height: 100%; width: 100%;"  src="@item.image"></a>
+                    <div style="padding-top: 10px"  >
+                        <div style="display: inline-block">
+                            <div style="display: inline-block" data-toggle="tooltip" data-placement="left" title="Viewed">
+                                <p id="viewcount" style="display: inline">10</p>
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            </div>
+                            <div style="display: inline-block" data-toggle="tooltip" data-placement="right" title="Liked">
+                                <p id="likecount" style="display: inline">2</p>
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div style="display: inline-block; padding-top: 5px">
+                            <button type="button" class="btn btn-default like"><span class="glyphicon glyphicon-thumbs-up"  aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-default dislike"><span class="glyphicon glyphicon-thumbs-down"  aria-hidden="true"></span></button>
+                        </div>
+						
+                    </div>
+						
+					
+                </div>
+            </div>
+            <div class="col-md-7">
+				
+                <div class="row">
+                    <a href="#"><h4>@item.year @item.make @item.model </h4></a>
+                </div>
+                <div class="row">
+                    <b><p class="price text-success">@item.price $</p></b>
+                    <p>@item.transmission</p>
+                    <p>@item.drivetype</p>
+                    <p>@item.mileage</p>
+                </div>
+            </div>
+        </div>
+        
+			
+        })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="well" id="subjectivefilters">
+			
+           <div id="addfilter" >
+                <h4>Additional Preferences</h4>                
+                <select style="height: 100px" class="form-control" name="make" id="select_filter" multiple="true">
+                    
+                    <option value="Outdoor">Outdoor</option>
+                    <option value="Appearance">Appearance</option>
+                    <option value="Family">Family</option>
+                    <option value="Power">Power</option>
+                    <option value="FuelEfficient">Fuel efficient</option>
+                    <option value="Reliable">Reliable</option>
+                    <option value="Value">Value for money</option>
+                    <option value="UserSatisfaction">User satisfaction</option>
+                   
+                </select>
+            </div> 
+            <hr style="border-color: #d9d9d9">
+            <div>
+                <h4  style="display:inline-block;padding-bottom:20px">Select importance</h4>  
+                <div style="display:inline-block;width:60px"></div>
+                <button id="btn_sort_sliders" class="btn btn-primary">Sort Sliders</button>
+            </div>
+            
+            <div id="sliders">
+                
+            </div>
+			
+			
+        </div>
+    </div>
+   
+   
+   
+   
+    
+    
+</div>
+<script>
+    
+    
+    
+    $(function() {
+        
+		
+        
+        var getSlider = function (id,title) {
+            var slider = ' <div data-id="'+id+'" class="mainslider" data-title="'+title+'" id="slider'+id+'"><p><b>'+title+'</b> <input type="text" class="sliderInput" value="" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50" data-slider-id="sliderId'+id+'" id="B" data-slider-handle="round" /></p></div>';
+            return $(slider);
+        };
+        
+		var rearrangeResults = function(){
+			var searchresults  = [];
+			$(".searchitem").each(function(){
+				searchresults.push({item:$(this), score:getWeightedScoreForItem($(this))});
+				$(this).remove();
+			});
+
+			searchresults.sort(function(a,b){
+					return b.score - a.score;
+				});
+			
+			for(var i=0 ; i < searchresults.length; i++){
+				$("#mainresults").append(searchresults[i].item);
+			}
+
+		};
+
+		var getWeightedScoreForItem = function(item){
+			var score = 0;
+			$(".mainslider").each(function(){
+				var id = $(this).data("id").toLowerCase();				
+				score += item.data(id)*$(this).find(".sliderInput").data('slider').getValue()/100.0;
+			});
+
+			return score;
+		};
+        
+        $( "#mainresults" ).on( "click", ".searchitem", function() {
+            alert(getWeightedScoreForItem($(this)));
+        });
+
+		/*$(".searchitem").click(function(){
+			console.log(getWeightedScoreForItem($(this)));
+		});*/
+
+        var selectedFilters = {};
+        $("#select_filter").change(function() {		
+		    
+		    $("#select_filter option:selected").each(function(i,selected){
+                if(selectedFilters[$(this).attr('value')] == undefined){
+                    var sli = getSlider($(this).attr('value'),$(this).text());                    
+                    $("#sliders").append(sli);
+                        
+                     var input = sli.find(".sliderInput");
+                     input.slider();                    
+                     var dataSliderId = input.data('sliderId');
+                     $("#" + dataSliderId + " .slider-selection").css('opacity', 0.5);    
+                   
+                    selectedFilters[$(this).attr('value')] = sli;
+                    
+                }
+                
+            });
+
+             $("#select_filter option:not(:selected)").each(function(i,selected){
+                if(selectedFilters[$(this).attr('value')] != undefined){
+                    $("#sliders").find("#slider"+$(this).attr('value')).remove();
+                    delete selectedFilters[$(this).attr('value')];
+                }
+                
+            });
+
+            $('.sliderInput').each(function() {
+                $(this).slider()
+                    .on('slide', function() {
+                        var dataSliderId = $(this).data("sliderId");
+                        $("#" + dataSliderId + " .slider-selection").css('opacity', $(this).data('slider').getValue() / 100);
+                    }).on('slideStop',function(){
+                        rearrangeResults();
+                    })
+                    .data('slider');
+            });
+
+            rearrangeResults();
+            
+        }); 
+
+        $("#btn_sort_sliders").click(function(){
+            
+            var sliderArr = [];
+            for (var sli in selectedFilters){
+                sliderArr.push({id:selectedFilters[sli].data("id"), title: selectedFilters[sli].data("title"), value: selectedFilters[sli].find(".sliderInput").data('slider').getValue()});
+            }
+            
+            sliderArr.sort(function(a,b){
+                return b.value-a.value;
+            });
+            
+            $(sliders).empty();
+            for(var item in sliderArr){
+                var sli = getSlider(sliderArr[item].id,sliderArr[item].title);                    
+                    $("#sliders").append(sli);
+                        
+                     var input = sli.find(".sliderInput");
+                     input.slider();                    
+                     var dataSliderId = input.data('sliderId');
+                     $("#" + dataSliderId + " .slider-selection").css('opacity', sliderArr[item].value/100);    
+                    input.data('slider').setValue(sliderArr[item].value);
+                    selectedFilters[sliderArr[item].id] = sli;
+                $(sliders).append(sliderArr[item]);      
+                      
+            }
+
+            $('.sliderInput').each(function() {
+                $(this).slider()
+                    .on('slide', function() {
+                        var dataSliderId = $(this).data("sliderId");
+                        $("#" + dataSliderId + " .slider-selection").css('opacity', $(this).data('slider').getValue() / 100);
+                    }).on('slideStop',function(){
+                        rearrangeResults();
+                    })
+                    .data('slider');
+            });
+
+            
+           
+        });
+        
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(".searchitem button.like").click(function() {
+
+            if ($(this).hasClass("btn-default")) {
+                $(this).removeClass("btn-default").addClass("btn-success");
+                $(this).parent().find("button.dislike").removeClass("btn-danger").addClass("btn-default");
+                var p = $(this).parent().parent().find("p#likecount");
+                p.text(parseInt(p.text()) + 1);
+
+            } else {
+                $(this).removeClass("btn-success").addClass("btn-default");
+                var p = $(this).parent().parent().find("p#likecount");
+                p.text(parseInt(p.text()) - 1);
+            }
+        });
+
+        $(".searchitem button.dislike").click(function() {
+            if ($(this).hasClass("btn-default")) {
+                $(this).removeClass("btn-default").addClass("btn-danger");
+                if ($(this).parent().find("button.like").hasClass("btn-success")) {
+                    var p = $(this).parent().parent().find("p#likecount");
+                    p.text(parseInt(p.text()) - 1);
+                    $(this).parent().find("button.like").removeClass("btn-success").addClass("btn-default");
+                }
+
+
+            } else {
+                $(this).removeClass("btn-danger").addClass("btn-default");
+            }
+
+        });
+
+        $.get("/makes", function(data) {
+            for (var i = 0; i < data.makes_list.length; i++) {
+
+                $("#select_make").append('<option value="' + data.makes_list[i] + '">' + data.makes_list[i] + '</option>');
+            }
+        });
+
+        $.get("/years", function(data) {
+            for (var i = 0; i < data.years_list.length; i++) {
+
+                $("#select_year").append('<option value="' + data.years_list[i] + '">' + data.years_list[i] + '</option>');
+            }
+        });
+
+        $("p.price").each(function() {
+            $(this).text(accounting.formatNumber(parseInt($(this).text())) + "$");
+        });
+
+        $("#resultcount").text("Results: " + $(".searchitem").length);
+
+
+       
+
+
+    })
+
+
+</script>
+		
+		
+		
+})
+
+
+
+	
+})

@@ -1,0 +1,459 @@
+﻿@html.extend('layout',function(model){
+@html.block("body", function(model){
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios" id="radio_know" value="know" checked>
+                I know what car i want
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios" id="radio_suggest" value="suggest">
+                Please suggest a car
+            </label>
+        </div>
+        <hr>
+        <div id="form_know" class="form-horizontal" style="display: block">
+            
+            <div class="form-group">
+                <label class="col-xs-1 control-label">Make*</label>
+                <div class="col-xs-5 selectContainer">
+                    <select style="height:200px" class="form-control" name="make" id="select_make" multiple="true">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-1 control-label">Model</label>
+                <div class="col-xs-5 selectContainer">
+                    <select style="height:150px" class="form-control" name="model" id="select_model" multiple="true">
+                        $("#select_model").append('<option value="">Select</option>');
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-1 control-label">Year</label>
+                <div class="col-xs-5 selectContainer">
+                    <select class="form-control" name="year" id="select_year" multiple="true">
+                        <option value="">Select</option>
+                        
+                    </select>
+                </div>
+            </div>
+            <button id="btn_next_know" class="btn btn-success">Next</button>
+
+        </div>
+
+        <div id="form_suggest" class="form-horizontal" style="display: none">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="form-group">
+                
+                            <label class=" control-label">1. In Price range*</label>
+                            <div class=" selectContainer" id="carprice">
+                                <select class="form-control" name="price_min">
+                                    <option value="30000">30000+</option>
+                                    <option value="25000">25000-30000</option>
+                                    <option value="20000" >20000-25000</option>
+                                    <option value="15000" selected="selected">15000-20000</option>
+                                    <option value="10000">10000-15000</option>
+                                    <option value="5000">5000-10000</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class=" control-label">2. Car Type</label>
+                            
+                            <div class=" selectContainer" id="cartype">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div  class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="convertible">
+                                                <img src="http://localhost:1337/images/cartype1.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="coupe"> <img src="http://localhost:1337/images/cartype2.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> <img src="http://localhost:1337/images/cartype3.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="diesel"> <img src="http://localhost:1337/images/cartype4.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                       
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="hybrid.electric"> <img src="http://localhost:1337/images/cartype5.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> <img src="http://localhost:1337/images/cartype6.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="minivan.van"> <img src="http://localhost:1337/images/cartype7.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> <img src="http://localhost:1337/images/cartype8.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="suv"> <img src="http://localhost:1337/images/cartype9.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="sedan"> <img src="http://localhost:1337/images/cartype10.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="speed"> <img src="http://localhost:1337/images/cartype11.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="wagon"> <img src="http://localhost:1337/images/cartype12.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="hatchback"> <img src="http://localhost:1337/images/cartype13.png">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                       
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class=" control-label">    3. Must Have features   </label>
+                            <div class=" selectContainer">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Automatic Transmission
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Navigation system
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Cruise control
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Leather seats
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Sunroof
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Remote start
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Rear view camera
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Video system
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">4 wheel drive
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Auxiliary Audio Input
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <button id="btn_next_suggest" class="btn btn-success">Next</button>
+        </div>
+        
+
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<script>
+
+    $(function() {
+		
+		
+
+		$("#btn_next_know").click(function() {
+			
+			var makes = "";
+			$("#select_make option:selected").each(function(i,selected){
+			if(makes == ""){
+				makes = this.text;
+			}
+			else{
+				makes += "."+this.text;
+			}
+
+			
+			});
+           
+            var models = "";
+			$("#select_model option:selected").each(function(i,selected){
+			if(models == ""){
+				models = this.text;
+			}
+			else{
+				models += "."+this.text;
+			}
+
+			
+			});
+
+
+			var years = "";
+			$("#select_year option:selected").each(function(i,selected){
+			if(years == ""){
+				years = this.text;
+			}
+			else{
+				years += "."+this.text;
+			}			
+			});
+
+
+
+			var queryModels = "";
+			if(models != ""){
+				queryModels = "&models=" + models;
+			}
+
+			var queryYears = "";
+			if(years != ""){
+				queryYears = "&years=" + years;
+			}
+
+            var query = "http://localhost:1337/search/know?makes=" + makes + queryModels+queryYears;
+            
+            window.location.href = query;
+        });
+
+
+        $("#btn_next_suggest").click(function() {
+            var pricemin = parseInt($("#carprice select option:selected").attr("value"));
+            var pricemax = 200000;
+            if (pricemin != 30000) {
+                pricemax = pricemin + 5000;
+            }
+            var types = "";
+            $("#cartype input[type=checkbox]:checked").each(function(index) {
+
+                if ($(this).attr("id") != "") {
+                    if (types == "") {
+                        types = types + $(this).attr("id");
+                    } else {
+                        types = types + "." + $(this).attr("id");
+                    }
+
+                }
+
+            });
+
+			var queryTypes = "";
+			if(types != ""){
+				queryTypes = "&types=" + types;
+			}
+
+            var query = "http://localhost:1337/search/suggest?pricemin=" + pricemin + "&pricemax=" + pricemax + queryTypes;
+            
+            window.location.href = query;
+        });
+
+        $.get("/makes", function(data) {
+            for (var i = 0; i < data.makes_list.length; i++) {
+
+                $("#select_make").append('<option value="' + data.makes_list[i] + '">' + data.makes_list[i] + '</option>');
+            }
+        });
+    });
+
+    $(function() {
+        $.get("/makes", function(data) {
+            for (var i = 0; i < data.makes_list.length; i++) {
+
+                $("#select_make").append('<option value="' + data.makes_list[i] + '">' + data.makes_list[i] + '</option>');
+            }
+        });
+    });
+
+
+    $("#select_make").change(function() {
+		
+		$("#select_model").empty();
+		$("#select_year").empty();
+		$("#select_model").append('<option value="">Select</option>');
+		$("#select_year").append('<option value="">Select</option>');
+		var years = {}
+		$("#select_make option:selected").each(function(i,selected){
+			var make = this.text;
+			$.get("/models?make=" + make, function(data) {
+            
+            
+            for (var i = 0; i < data.models_list.length; i++) {
+
+                $("#select_model").append('<option value="' + data.models_list[i] + '">' + data.models_list[i] + '</option>');
+            }
+			});
+
+			$.get("/yearsbymake?make=" + make, function(data) {
+            
+            
+            for (var i = 0; i < data.years_list.length; i++) {
+				if(years[data.years_list[i]] === true){
+					continue;
+				}
+                $("#select_year").append('<option value="' + data.years_list[i] + '">' + data.years_list[i] + '</option>');
+				years[data.years_list[i]] = true;
+			}
+			});
+		});
+
+        
+
+        
+    });
+
+   
+
+    $("#radio_know").change(function() {
+        $("#form_know").css("display", "block");
+        $("#form_suggest").css("display", "none");
+    });
+
+    $("#radio_suggest").change(function() {
+        $("#form_know").css("display", "none");
+        $("#form_suggest").css("display", "block");
+    });
+
+    $("#btn_next").click(function() {
+        alert("next clicked");
+    });
+</script>
+
+
+
+});
+
+
+
+	
+})

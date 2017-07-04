@@ -1,0 +1,38 @@
+﻿@html.extend('layout',function(model){
+@html.block("body", function(model){
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h2>I am looking for a,</h2>
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="new" checked>
+                New car
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios2" value="used">
+                Used car
+            </label>
+        </div>
+        <button id="btn_next"  class="btn btn-success">Next</button>		
+				
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<script>
+    $("#btn_next").click(function() {
+        window.location.href = "/new";
+    })
+</script>
+		
+		
+		
+});
+
+
+
+	
+})
